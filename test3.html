@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Art</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .canvas {
+        display: grid;
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(10, 30px);
+        gap: 1px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
+
+    .pixel {
+        width: 30px;
+        height: 30px;
+        background-color: white;
+    }
+
+    .color-picker {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-bottom: 20px;
+    }
+
+    .color-box {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="color-picker">
+        <div class="color-box" style="background-color: red;" onclick="setColor('red')"></div>
+        <div class="color-box" style="background-color: blue;" onclick="setColor('blue')"></div>
+        <div class="color-box" style="background-color: green;" onclick="setColor('green')"></div>
+        <div class="color-box" style="background-color: yellow;" onclick="setColor('yellow')"></div>
+        <div class="color-box" style="background-color: purple;" onclick="setColor('purple')"></div>
+        <div class="color-box" style="background-color: orange;" onclick="setColor('orange')"></div>
+        <div class="color-box" style="background-color: pink;" onclick="setColor('pink')"></div>
+        <div class="color-box" style="background-color: brown;" onclick="setColor('brown')"></div>
+        <div class="color-box" style="background-color: black;" onclick="setColor('black')"></div>
+        <div class="color-box" style="background-color: gray;" onclick="setColor('gray')"></div>
+        <div class="color-box" style="background-color: cyan;" onclick="setColor('cyan')"></div>
+        <div class="color-box" style="background-color: magenta;" onclick="setColor('magenta')"></div>
+        <div class="color-box" style="background-color: lime;" onclick="setColor('lime')"></div>
+        <div class="color-box" style="background-color: teal;" onclick="setColor('teal')"></div>
+        <div class="color-box" style="background-color: maroon;" onclick="setColor('maroon')"></div>
+    </div>
+
+    <div class="canvas" id="canvas"></div>
+
+    <script>
+        function setColor(color) {
+            currentColor = color;
+        }
+
+        var currentColor = 'black';
+
+        const canvas = document.getElementById('canvas');
+        for (let i = 0; i < 100; i++) {
+            const pixel = document.createElement('div');
+            pixel.classList.add('pixel');
+            pixel.addEventListener('mouseover', function() {
+                if (mouseDown) {
+                    pixel.style.backgroundColor = currentColor;
+                }
+            });
+            pixel.addEventListener('mousedown', function() {
+                pixel.style.backgroundColor = currentColor;
+                mouseDown = true;
+            });
+            pixel.addEventListener('mouseup', function() {
+                mouseDown = false;
+            });
+            canvas.appendChild(pixel);
+        }
+
+        var mouseDown = false;
+    </script>
+</body>
+</html>
